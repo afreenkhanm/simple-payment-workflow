@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_0fr9mxs" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.5.0">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_0fr9mxs" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.5.0">
   <bpmn:collaboration id="Collaboration_193qnxp">
     <bpmn:participant id="Participant_030rykd" name="Payment Approval System" processRef="simple-payment-workflow-process" />
   </bpmn:collaboration>
@@ -12,10 +12,6 @@
       <bpmn:outgoing>SequenceFlow_1wkugfn</bpmn:outgoing>
       <bpmn:outgoing>SequenceFlow_0qmfj8n</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:task id="Task_17ni991" name="Approve payment request">
-      <bpmn:incoming>SequenceFlow_1wkugfn</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_01iubdy</bpmn:outgoing>
-    </bpmn:task>
     <bpmn:endEvent id="EndEvent_09jbod5" name="Terminate">
       <bpmn:incoming>SequenceFlow_0qmfj8n</bpmn:incoming>
     </bpmn:endEvent>
@@ -26,6 +22,10 @@
     <bpmn:sequenceFlow id="SequenceFlow_1wkugfn" name="amount &#60;= 10k" sourceRef="ExclusiveGateway_0a7zmds" targetRef="Task_17ni991" />
     <bpmn:sequenceFlow id="SequenceFlow_0qmfj8n" name="amount &#62; 10k" sourceRef="ExclusiveGateway_0a7zmds" targetRef="EndEvent_09jbod5" />
     <bpmn:sequenceFlow id="SequenceFlow_01iubdy" sourceRef="Task_17ni991" targetRef="EndEvent_1xxjvau" />
+    <bpmn:serviceTask id="Task_17ni991" name="Approve payment request" camunda:class="">
+      <bpmn:incoming>SequenceFlow_1wkugfn</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_01iubdy</bpmn:outgoing>
+    </bpmn:serviceTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_193qnxp">
@@ -43,9 +43,6 @@
         <bpmndi:BPMNLabel>
           <dc:Bounds x="318" y="216" width="63" height="27" />
         </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Task_17ni991_di" bpmnElement="Task_17ni991">
-        <dc:Bounds x="530" y="163" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="EndEvent_1xxjvau_di" bpmnElement="EndEvent_1xxjvau">
         <dc:Bounds x="682" y="185" width="36" height="36" />
@@ -83,6 +80,9 @@
         <di:waypoint x="630" y="203" />
         <di:waypoint x="682" y="203" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_0tj616i_di" bpmnElement="Task_17ni991">
+        <dc:Bounds x="530" y="163" width="100" height="80" />
+      </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>
