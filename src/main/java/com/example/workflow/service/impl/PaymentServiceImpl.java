@@ -1,5 +1,6 @@
 package com.example.workflow.service.impl;
 
+import com.example.workflow.service.CamundaWorkflowService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.example.workflow.dto.GenericResponseDto;
@@ -12,15 +13,18 @@ import org.springframework.stereotype.Service;
 public class PaymentServiceImpl implements PaymentService {
 	
 	private PaymentRepository paymentRepository;
+	private CamundaWorkflowService camundaWorkflowService;
 
 	@Autowired
-	public PaymentServiceImpl(PaymentRepository paymentRepository) {
+	public PaymentServiceImpl(PaymentRepository paymentRepository, CamundaWorkflowService camundaWorkflowService) {
 		this.paymentRepository = paymentRepository;
+		this.camundaWorkflowService = camundaWorkflowService;
 	}
 
 	@Override
 	public GenericResponseDto newPayment(PaymentDto newPayment) {
 		GenericResponseDto dto = new GenericResponseDto();
+		dto.setData(camundaWorkflowService.initWorkflow(newPayment));
 		return dto;
 	}
 

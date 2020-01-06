@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_0fr9mxs" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.5.0">
-  <bpmn:collaboration id="Collaboration_193qnxp">
+  <bpmn:collaboration id="payment-application">
     <bpmn:participant id="Participant_030rykd" name="Payment Approval System" processRef="simple-payment-workflow-process" />
   </bpmn:collaboration>
   <bpmn:process id="simple-payment-workflow-process" isExecutable="true">
@@ -32,7 +32,7 @@
     </bpmn:serviceTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
-    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_193qnxp">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="payment-application">
       <bpmndi:BPMNShape id="Participant_030rykd_di" bpmnElement="Participant_030rykd" isHorizontal="true">
         <dc:Bounds x="160" y="111" width="700" height="279" />
       </bpmndi:BPMNShape>
