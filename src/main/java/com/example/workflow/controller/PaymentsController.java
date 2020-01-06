@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.workflow.dto.GenericResponseDto;
-import com.example.workflow.dto.NewPayment;
+import com.example.workflow.dto.PaymentDto;
 import com.example.workflow.service.PaymentService;
 
 @RestController("/payments")
@@ -21,7 +21,7 @@ public class PaymentsController {
 	}
 
 	@PostMapping("/newPayment")
-	public ResponseEntity<GenericResponseDto> newPayment(@RequestBody NewPayment payment) {
-		return ResponseEntity.ok(paymentService.newPayment(payment));
+	public ResponseEntity<GenericResponseDto> newPayment(@RequestBody PaymentDto newPayment) {
+		return ResponseEntity.ok(paymentService.newPayment(newPayment));
 	}
 }
